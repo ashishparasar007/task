@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .exp{
+      width: 25px;
+  }
+  label{
+      margin-left:10px;
+      
+  }
+  .inputData{
+  margin-top: 5px;
+  }
+  #exp_month ,.card_holder , .cvv{
+      margin-top: 5px;
+      margin-left: 10px;
+  }
+  .cvv{
+      width: 40px;
+  }
+  .pay_box{
+      background-color: rgb(228, 231, 230);
+      display: inline-block;
+      padding: 5px;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="pay_box">
+            <div class="inputData_number">
+                    <label for="card_number"><b>Card Number</b></label><br>
+                    <iframe id="tokenFrame" name="tokenFrame" height="40px" src="https://fts.cardconnect.com:6443/itoke/ajax-tokenizer.html" frameborder="0" scrolling="no"></iframe>            
+            </div>
+            <div class="inputData">
+                    <label><b>Expirydate(mm/yy)</b></label><br>
+                    <input class="exp" id="exp_month" type="text" maxlength="2" />&nbsp;/&nbsp;<input class="exp" id="exp_year" type="text" maxlength="2"/>            
+            </div>
+            <div class="inputData">
+                    <label><b>Card Holder</b></label><br>
+                    <input class="card_holder" type="text" maxlength="30"/>            
+            </div>
+            <div class="inputData">
+                    <label><b>cvv/cvcc</b></label><br>
+                    <input class="cvv" type="text" maxlength="4"/>            
+            </div>
+            <button id="btn">htn</button>      
+    </div>
+    <script>
+         var valid="true";
+        $("#btn").click(function()
+        {
+            var exp_month=$("#exp_month").val();
+            console.log(exp_month);
+          if(parseInt(exp_month)>12)
+          {
+              valid="false"
+              console.log(valid);
+          }
+          var d=new Date();
+          var year=d.getFullYear()
+          var chk=year.toString().substr(2);
+          var exp_year=$("#exp_year").val();
+          if(parseInt(exp_year)<parseInt(chk))
+          {
+              valid="false";
+              console.log(valid);
+          }
+          
+        });
+        
+    </script>
+</body>
+</html>
